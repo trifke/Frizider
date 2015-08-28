@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Frizider" representedClassName="Frizider" syncable="YES">
+        <relationship name="sastojci" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sastojak" inverseName="frizider" inverseEntity="Sastojak" syncable="YES"/>
+    </entity>
+    <entity name="NedeljniRaspored" representedClassName="NedeljniRaspored" syncable="YES">
+        <relationship name="rasporediPoDanima" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Raspored" inverseName="uNedeljnomRasporedu" inverseEntity="Raspored" syncable="YES"/>
+    </entity>
+    <entity name="Raspored" representedClassName="Raspored" syncable="YES">
+        <attribute name="dan" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recepti" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Recept" inverseName="dani" inverseEntity="Recept" syncable="YES"/>
+        <relationship name="uNedeljnomRasporedu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NedeljniRaspored" inverseName="rasporediPoDanima" inverseEntity="NedeljniRaspored" syncable="YES"/>
+    </entity>
+    <entity name="Recept" representedClassName="Recept" syncable="YES">
+        <attribute name="naziv" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opis" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priprema" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="dani" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Raspored" inverseName="recepti" inverseEntity="Raspored" syncable="YES"/>
+        <relationship name="sastojci" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sastojak" inverseName="recept" inverseEntity="Sastojak" syncable="YES"/>
+    </entity>
+    <entity name="Sastojak" representedClassName="Sastojak" syncable="YES">
+        <attribute name="naziv" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="frizider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Frizider" inverseName="sastojci" inverseEntity="Frizider" syncable="YES"/>
+        <relationship name="recept" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recept" inverseName="sastojci" inverseEntity="Recept" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Frizider" positionX="-371" positionY="-153" width="128" height="58"/>
+        <element name="Recept" positionX="-369" positionY="-42" width="128" height="118"/>
+        <element name="Sastojak" positionX="-119" positionY="-72" width="128" height="88"/>
+        <element name="Raspored" positionX="-560" positionY="-18" width="128" height="88"/>
+        <element name="NedeljniRaspored" positionX="-569" positionY="122" width="128" height="58"/>
+    </elements>
+</model>
