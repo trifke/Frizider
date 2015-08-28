@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Frizider</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_raspored">RasporedActivity</string>
+    <string name="title_activity_recepti">ReceptiActivity</string>
+    <string name="title_activity_frizider">FriziderActivity</string>
+    <string name="title_activity_novi_recepti">NoviReceptiActivity</string>
+    <string name="title_activity_sastojci">SastojciActivity</string>
+</resources>
