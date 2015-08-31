@@ -3,6 +3,7 @@ package com.chaoticneutral.frizider;
 import android.app.ListActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -32,13 +33,15 @@ public class SastojciActivity extends ListActivity
         //        drop this database if already exists
         db.onUpgrade(db.getWritableDatabase(), 1, 2);
 
-        db.addIngrediant(new Ingredient("So"));
-        db.addIngrediant(new Ingredient("Biber"));
-        db.addIngrediant(new Ingredient("Kecap"));
+        db.addIngredient(new Ingredient("So"));
+        db.addIngredient(new Ingredient("Biber"));
+        db.addIngredient(new Ingredient("Kecap"));
 
-        //        get all ingrediants
-        list = db.getAllIngrediants();
+        //        get all ingredients
+        list = db.getAllIngredients();
         List listName = new ArrayList();
+
+
 
         for (int i = 0; i < list.size(); i++)
         {

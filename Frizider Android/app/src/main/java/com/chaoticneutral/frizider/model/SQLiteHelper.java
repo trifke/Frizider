@@ -33,41 +33,41 @@ public class SQLiteHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        //        SQL statement to create ingrediant table
-        String CREATE_INGREDIANT_TABLE = "CREATE TABLE ingrediants ( " + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT )";
-        db.execSQL(CREATE_INGREDIANT_TABLE);
+        //        SQL statement to create ingredient table
+        String CREATE_INGREDIENT_TABLE = "CREATE TABLE ingredients ( " + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT )";
+        db.execSQL(CREATE_INGREDIENT_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
-        //        drop ingrediants table if already exists
-        db.execSQL("DROP TABLE IF EXISTS ingrediants");
+        //        drop ingredients table if already exists
+        db.execSQL("DROP TABLE IF EXISTS ingredients");
         this.onCreate(db);
     }
 
-    public void addIngrediant(Ingredient ingredient)
+    public void addIngredient(Ingredient ingredient)
     {
-        //        get reference of the IngrediantDB database
+        //        get reference of the IngredientDB database
         SQLiteDatabase db = this.getWritableDatabase();
 
         //        make values to be inserted
         ContentValues values = new ContentValues();
         values.put(getIngredient_NAME, ingredient.getName());
 
-        //        insert ingrediant
+        //        insert ingredient
         db.insert(table_INGREDIENT, null, values);
 
-        //        cloase database transaction
+        //        close database transaction
         db.close();
     }
 
-    public Ingredient getIngrediant(int id)
+    public Ingredient getIngredient(int id)
     {
-        //        get reference of the IngrediantDB database
+        //        get reference of the IngredientDB database
         SQLiteDatabase db = this.getReadableDatabase();
 
-        //        get ingrediant query
+        //        get ingredient query
         Cursor cursor = db.query(table_INGREDIENT, COLUMNS, " id = ?", new String[] { String.valueOf(id)}, null, null, null, null);
 
         //        if results != null, parse the first one
@@ -81,14 +81,14 @@ public class SQLiteHelper extends SQLiteOpenHelper
         return ingredient;
     }
 
-    public List getAllIngrediants()
+    public List getAllIngredients()
     {
-        List ingrediants = new LinkedList();
+        List ingredients = new LinkedList();
 
-        //        select ingrediants query
+        //        select ingredients query
         String query = "SELECT * FROM " + table_INGREDIENT;
 
-        //        get reference of the IngrediantDB database
+        //        get reference of the IngredientDB database
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
@@ -102,22 +102,22 @@ public class SQLiteHelper extends SQLiteOpenHelper
                 ingredient.setId(Integer.parseInt(cursor.getString(0)));
                 ingredient.setName(cursor.getString(1));
 
-                //      Add ingrediant to ingrediants
-                ingrediants.add(ingredient);
+                //      Add ingredient to ingredients
+                ingredients.add(ingredient);
             }
             while (cursor.moveToNext());
         }
 
-        return ingrediants;
+        return ingredients;
     }
 
-    //    Deleting single ingrediant
-    public void deleteIngrediant(Ingredient ingredient)
+    //    Deleting single ingredient
+    public void deleteIngredient(Ingredient ingredient)
     {
-        //        get reference of the IngrediantDB database
+        //        get reference of the IngredientDB database
         SQLiteDatabase db = this.getWritableDatabase();
 
-        //        detele ingrediant
+        //        delete ingredient
         db.delete(table_INGREDIENT, ingredient_ID + " = ?", new String[] { String.valueOf(ingredient.getId()) });
         db.close();
     }
